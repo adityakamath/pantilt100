@@ -126,15 +126,24 @@
       <plugin>sts_hardware_interface/STSHardwareInterface</plugin>
       <param name="serial_port">$(arg serial_port)</param>
       <param name="baud_rate">${baud_rate}</param>
+      <param name="communication_timeout_ms">100</param>
       <param name="use_sync_write">$(arg use_sync_write)</param>
       <param name="enable_mock_mode">$(arg use_mock)</param>
+      <param name="max_velocity_steps">${sts_max_velocity_steps}</param>
+      <param name="reset_states_on_activate">true</param>
     </hardware>
 
     <!-- Pan axis: rotates the payload around Z (Motor ID ${pan_motor_id}) -->
     <joint name="pan_joint">
       <param name="motor_id">${pan_motor_id}</param>
       <param name="operating_mode">${pantilt_operating_mode}</param>
+      <param name="min_position">${pan_joint_lower}</param>
+      <param name="max_position">${pan_joint_upper}</param>
+      <param name="max_velocity">${max_velocity_rads}</param>
+      <param name="position_center_steps">2048</param>
       <command_interface name="position"/>
+      <command_interface name="velocity"/>
+      <command_interface name="acceleration"/>
       <state_interface name="position"/>
       <state_interface name="velocity"/>
       <state_interface name="effort"/>
@@ -148,7 +157,13 @@
     <joint name="tilt_joint">
       <param name="motor_id">${tilt_motor_id}</param>
       <param name="operating_mode">${pantilt_operating_mode}</param>
+      <param name="min_position">${tilt_joint_lower}</param>
+      <param name="max_position">${tilt_joint_upper}</param>
+      <param name="max_velocity">${max_velocity_rads}</param>
+      <param name="position_center_steps">2048</param>
       <command_interface name="position"/>
+      <command_interface name="velocity"/>
+      <command_interface name="acceleration"/>
       <state_interface name="position"/>
       <state_interface name="velocity"/>
       <state_interface name="effort"/>
