@@ -125,7 +125,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="../meshes/oak_d_s2.stl"/>
+        <mesh filename="../meshes/oakd_s2.stl"/>
       </geometry>
       <material name="charcoal"/>
     </visual>
@@ -183,6 +183,14 @@
     <parent link="oak_right_camera_frame"/>
     <child link="oak_right_camera_optical_frame"/>
     <origin xyz="0 0 0" rpy="-1.5707963267948966 0.0 -1.5707963267948966"/>
+  </joint>
+
+  <link name="oak_imu_frame"/>
+
+  <joint name="oak_imu_joint" type="fixed">
+    <parent link="oak"/>
+    <child link="oak_imu_frame"/>
+    <origin xyz="-0.008 -0.037945 -0.00079" rpy="3.1415926535897932 1.5707963267948966 0.0"/>
   </joint>
 
   <!-- ROS 2 CONTROL -->
