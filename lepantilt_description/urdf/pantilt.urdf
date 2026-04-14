@@ -185,14 +185,6 @@
     <origin xyz="0 0 0" rpy="-1.5707963267948966 0.0 -1.5707963267948966"/>
   </joint>
 
-  <link name="oak_imu_frame"/>
-
-  <joint name="oak_imu_joint" type="fixed">
-    <parent link="oak"/>
-    <child link="oak_imu_frame"/>
-    <origin xyz="-0.008 -0.037945 -0.00079" rpy="3.1415926535897932 1.5707963267948966 0.0"/>
-  </joint>
-
   <!-- ROS 2 CONTROL -->
   <ros2_control name="lepantilt_control" type="system">
     <hardware>
