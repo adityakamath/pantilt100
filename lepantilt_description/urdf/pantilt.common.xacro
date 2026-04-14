@@ -39,4 +39,11 @@
   <xacro:property name="oak_roll" value="${-pi/2}"/>
   <xacro:property name="oak_yaw"  value="${-pi/2}"/>
 
+  <!-- OAK-D-S2 IMU offset (relative to oak frame) -->
+  <xacro:property name="oak_imu_x" value="-0.008"/>
+  <xacro:property name="oak_imu_y" value="-0.037945"/>
+  <xacro:property name="oak_imu_z" value="-0.00079"/>
+  <xacro:property name="oak_imu_r" value="${pi}"/>
+  <xacro:property name="oak_imu_p" value="${pi/2}"/>
+
 </robot>

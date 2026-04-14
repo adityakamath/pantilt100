@@ -145,7 +145,7 @@
   <joint name="oak_imu_joint" type="fixed">
     <parent link="oak"/>
     <child link="oak_imu_frame"/>
-    <origin xyz="-0.008 -0.037945 -0.00079" rpy="${pi} ${pi/2} 0"/>
+    <origin xyz="${oak_imu_x} ${oak_imu_y} ${oak_imu_z}" rpy="${oak_imu_r} ${oak_imu_p} 0"/>
   </joint>
 
   <!-- ROS 2 CONTROL -->
