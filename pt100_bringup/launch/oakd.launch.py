@@ -13,6 +13,7 @@ from launch_ros.descriptions import ComposableNode, ParameterFile
 
 
 def generate_launch_description():
+    """Declare arguments and defer camera node setup to launch_setup via OpaqueFunction."""
     declared_arguments = [
         DeclareLaunchArgument(
             "pointcloud",
@@ -22,6 +23,7 @@ def generate_launch_description():
     ]
 
     def launch_setup(context, *_args, **_kwargs):
+        """Select vio.yaml or vio_pcl.yaml based on the pointcloud arg and start the OAK-D composable node container."""
         log_level = "info"
         if context.environment.get("DEPTHAI_DEBUG") == "1":
             log_level = "debug"

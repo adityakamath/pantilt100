@@ -1,3 +1,5 @@
+# OAK-D S2 pipeline: RGBD + VIO, no point cloud.
+# RGB at 30 Hz (quarter ISP resolution, low-bandwidth JPEG), depth at 15 Hz (2x decimation), VIO at 60 Hz.
 /oak:
   ros__parameters:
     driver:

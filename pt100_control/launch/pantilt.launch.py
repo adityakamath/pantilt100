@@ -93,7 +93,7 @@ def generate_launch_description():
     }
 
     controller_config = PathJoinSubstitution(
-        [FindPackageShare("pt100_control"), "config", "pantilt_control_config.yaml"]
+        [FindPackageShare("pt100_control"), "config", "pantilt_config.yaml"]
     )
 
     # Publishes robot state (TFs, joint states)

@@ -13,7 +13,7 @@
 
   <xacro:include filename="$(find pt100_description)/urdf/pantilt.common.xacro"/>
   <xacro:include filename="$(find pt100_description)/urdf/pantilt.control.xacro"/>
-  <xacro:include filename="$(find pt100_description)/urdf/pantilt.module.xacro"/>
+  <xacro:include filename="$(find pt100_description)/urdf/pt100.module.xacro"/>
 
   <!-- Standalone pantilt module instantiation -->
   <link name="base_footprint"/>

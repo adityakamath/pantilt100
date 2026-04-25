@@ -126,7 +126,7 @@
     </joint>
 
     <!-- OAK-D-S2 Camera + IMU -->
-    <xacro:include filename="$(find pt100_description)/urdf/oakd_s2.urdf.xacro"/>
+    <xacro:include filename="$(find pt100_description)/urdf/oakd_s2.module.xacro"/>
     <xacro:oakd_s2_camera
       camera_name="oak_link"
       base_frame="oak_link"

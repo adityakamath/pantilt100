@@ -2,7 +2,7 @@
 """
 Launch joy_teleop for Pan Tilt 100 joystick control.
 
-Subscribes to /joy and publishes JointTrajectory commands to pt100_controller.
+Subscribes to /joy and publishes Float64MultiArray position commands to /pantilt_controller/commands.
 """
 
 from launch import LaunchDescription
@@ -11,6 +11,7 @@ from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
 
 def generate_launch_description():
+    """Launch joy_teleop with the PT100 axis/button mapping config."""
     teleop_config = PathJoinSubstitution(
         [FindPackageShare("pt100_control"), "config", "teleop_config.yaml"]
     )

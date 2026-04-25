@@ -1,3 +1,5 @@
+# ros2_control controller manager and joint limits for the PT100 pan-tilt.
+# Configures ForwardCommandController (position interface), JointStateBroadcaster, and JointSaturationLimiter.
 controller_manager:
   ros__parameters:
     update_rate: 50  # Hz
@@ -16,10 +18,12 @@ controller_manager:
         has_position_limits: true
         min_position: -1.5708    # rad — matches pantilt.control.xacro pan_joint_lower
         max_position: 1.5708     # rad — matches pantilt.control.xacro pan_joint_upper
+        has_velocity_limits: false
       tilt_joint:
         has_position_limits: true
         min_position: -1.5708  # rad — -π/2, matches pantilt.control.xacro tilt_joint_lower
         max_position: 1.5708   # rad — +π/2, matches pantilt.control.xacro tilt_joint_upper
+        has_velocity_limits: false
 
 joint_state_broadcaster:
   ros__parameters:

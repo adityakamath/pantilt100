@@ -1,3 +1,5 @@
+# joy_teleop mapping for PT100 joystick control.
+# Left stick axes drive pan/tilt (deadman: L1/button 9); buttons A/B (0/1) toggle emergency stop.
 joy_teleop:
   ros__parameters:
     pantilt_control:

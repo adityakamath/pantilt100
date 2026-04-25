@@ -1,3 +1,5 @@
+# OAK-D S2 pipeline: RGBD + VIO + point cloud.
+# RGB at 30 Hz, depth at 30 Hz (no decimation), VIO at 60 Hz. Higher CPU load than vio.yaml.
 /oak:
   ros__parameters:
     driver:
