@@ -4,8 +4,6 @@
 <!-- |    EDITING THIS FILE BY HAND IS NOT RECOMMENDED                                 | -->
 <!-- =================================================================================== -->
 <robot name="lepantilt">
-  <!-- Position mode -->
-  <!-- Max hardware velocity in steps/s -->
   <!-- N⋅m (30 kgf⋅cm for STS3215) -->
   <!-- ROS 2 CONTROL -->
   <ros2_control name="lepantilt_control" type="system">
@@ -23,9 +21,9 @@
     <joint name="pan_joint">
       <param name="motor_id">1</param>
       <param name="operating_mode">0</param>
-      <param name="min_position">-2</param>
-      <param name="max_position">2</param>
-      <param name="max_velocity">5.21553467881118</param>
+      <param name="min_position">-1.5707963267948966</param>
+      <param name="max_position">1.5707963267948966</param>
+      <param name="max_velocity">2.60776733940559</param>
       <param name="position_center_steps">2048</param>
       <command_interface name="position"/>
       <state_interface name="position"/>
@@ -42,8 +40,8 @@
       <param name="operating_mode">0</param>
       <param name="min_position">-1.5707963267948966</param>
       <param name="max_position">1.5707963267948966</param>
-      <param name="max_velocity">5.21553467881118</param>
-      <param name="position_center_steps">2048</param>
+      <param name="max_velocity">2.60776733940559</param>
+      <param name="position_center_steps">2646</param>
       <command_interface name="position"/>
       <state_interface name="position"/>
       <state_interface name="velocity"/>
@@ -54,9 +52,6 @@
       <state_interface name="is_moving"/>
     </joint>
   </ros2_control>
-  <!-- Pan-tilt module: mechanical parts only (no ros2_control)
-       Attach to parent platform (e.g., lekiwi base_link) at specified origin -->
-  <!-- <xacro:include filename="$(find depthai_descriptions)/urdf/include/depthai_macro.urdf.xacro"/> -->
   <!-- Standalone pantilt module instantiation -->
   <link name="base_footprint"/>
   <!-- Material definitions (referenced by links below) -->
@@ -82,21 +77,21 @@
     <visual>
       <origin rpy="0 0 1.5707963267948966" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://lepantilt_description/meshes/pantilt_base.stl"/>
+        <mesh filename="../meshes/pantilt_base.stl"/>
       </geometry>
       <material name="light_grey"/>
     </visual>
     <visual>
       <origin rpy="0 0 1.5707963267948966" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://lepantilt_description/meshes/pan_motor.stl"/>
+        <mesh filename="../meshes/pan_motor.stl"/>
       </geometry>
       <material name="charcoal"/>
     </visual>
     <collision>
       <origin rpy="0 0 1.5707963267948966" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://lepantilt_description/meshes/pantilt_base.stl"/>
+        <mesh filename="../meshes/pantilt_base.stl"/>
       </geometry>
     </collision>
   </link>
@@ -110,21 +105,21 @@
     <visual>
       <origin rpy="1.5707963267948966 0 1.5707963267948966" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://lepantilt_description/meshes/pan_joint.stl"/>
+        <mesh filename="../meshes/pan_joint.stl"/>
       </geometry>
       <material name="light_grey"/>
     </visual>
     <visual>
       <origin rpy="1.5707963267948966 0 1.5707963267948966" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://lepantilt_description/meshes/tilt_motor.stl"/>
+        <mesh filename="../meshes/tilt_motor.stl"/>
       </geometry>
       <material name="charcoal"/>
     </visual>
     <collision>
       <origin rpy="1.5707963267948966 0 1.5707963267948966" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://lepantilt_description/meshes/pan_joint.stl"/>
+        <mesh filename="../meshes/pan_joint.stl"/>
       </geometry>
     </collision>
   </link>
@@ -138,31 +133,72 @@
     <visual>
       <origin rpy="1.5707963267948966 -1.5707963267948966 0" xyz="0.119 0.07579999999999999 -0.0002"/>
       <geometry>
-        <mesh filename="package://lepantilt_description/meshes/tilt_joint.stl"/>
+        <mesh filename="../meshes/tilt_joint.stl"/>
       </geometry>
       <material name="light_grey"/>
     </visual>
     <collision>
       <origin rpy="1.5707963267948966 -1.5707963267948966 0" xyz="0.119 0.07579999999999999 -0.0002"/>
       <geometry>
-        <mesh filename="package://lepantilt_description/meshes/tilt_joint.stl"/>
+        <mesh filename="../meshes/tilt_joint.stl"/>
       </geometry>
     </collision>
   </link>
+  <!-- For the Pan and Tilt joints below, velocity="1e6": 
+    URDF requires a velocity attribute on revolute joints, but hardware-enforced
+    velocity profiling makes software rate-limiting redundant and causes spurious
+    "command out of limits" errors from ros2_control when joy_teleop sends large absolute
+    position steps. 1e6 rad/s is physically unreachable and effectively disables the
+    JointSaturationLimiter's per-cycle velocity clipping for these joints. -->
   <!-- Pan joint (revolute) -->
   <joint name="pan_joint" type="revolute">
     <parent link="pantilt_base_link"/>
     <child link="pan_link"/>
     <origin rpy="0 0 0" xyz="0.0452 0 0.0165"/>
     <axis xyz="0 0 1"/>
-    <limit effort="2.942" lower="-2" upper="2" velocity="5.21553467881118"/>
+    <limit effort="2.942" lower="-1.5707963267948966" upper="1.5707963267948966" velocity="1e6"/>
   </joint>
   <!-- Tilt joint (revolute) -->
   <joint name="tilt_joint" type="revolute">
     <parent link="pan_link"/>
     <child link="tilt_link"/>
     <origin rpy="-1.5707963267948966 1.5707963267948966 0" xyz="0.0306 0 0.1025"/>
-    <axis xyz="0 0 1"/>
-    <limit effort="2.942" lower="-1.5707963267948966" upper="1.5707963267948966" velocity="5.21553467881118"/>
+    <axis xyz="0 0 -1"/>
+    <limit effort="2.942" lower="-1.5707963267948966" upper="1.5707963267948966" velocity="1e6"/>
+  </joint>
+  <!--
+	  Custom OAK-D-S2 camera macro for lepantilt only.
+	  This version allows direct color parameterization (r/g/b/a) for the mesh material.
+	-->
+  <!-- base_link of the sensor-->
+  <link name="oak_link"/>
+  <joint name="oak_link_center_joint" type="fixed">
+    <parent link="tilt_link"/>
+    <child link="oak_link"/>
+    <origin rpy="-1.5707963267948966 0 -1.5707963267948966" xyz="-0.03435 -0.01 0"/>
+  </joint>
+  <!-- IMU frame -->
+  <link name="oak_imu_frame"/>
+  <joint name="oak_imu_frame_joint" type="fixed">
+    <parent link="oak_link"/>
+    <child link="oak_imu_frame"/>
+    <origin rpy="3.141592653589793 1.5707963267948966 0" xyz="-0.008 -0.037945 -0.00079"/>
+  </joint>
+  <!-- Device mesh with custom color -->
+  <link name="oak_link_model_origin">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="../meshes/oakd_s2.stl"/>
+      </geometry>
+      <material name="mat">
+        <color rgba="0.15 0.15 0.15 1.0"/>
+      </material>
+    </visual>
+  </link>
+  <joint name="oak_link_model_origin_joint" type="fixed">
+    <parent link="oak_link"/>
+    <child link="oak_link_model_origin"/>
+    <origin rpy="1.5707963267948966 0 1.5707963267948966" xyz="0 0 0"/>
   </joint>
 </robot>

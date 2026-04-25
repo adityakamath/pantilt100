@@ -4,10 +4,7 @@
   <!-- Color properties (RGBA) -->
   <xacro:property name="light_grey_rgba" value="0.8 0.8 0.8 1.0"/>
   <xacro:property name="charcoal_rgba" value="0.15 0.15 0.15 1.0"/>
-  <xacro:property name="charcoal_r" value="0.15"/>
-  <xacro:property name="charcoal_g" value="0.15"/>
-  <xacro:property name="charcoal_b" value="0.15"/>
-  <xacro:property name="charcoal_a" value="1.0"/>
+  <xacro:property name="charcoal_rgb" value="0.15"/>
 
   <!-- Pantilt base visual compensation / mount rotation (rad) -->
   <xacro:property name="pantilt_offset_rz" value="${pi/2}"/>

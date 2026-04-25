@@ -1,17 +1,24 @@
 <?xml version="1.0"?>
 <robot name="lepantilt" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
+  <xacro:arg name="serial_port"    default="/dev/ttySERVO"/>
+  <xacro:arg name="baud_rate"      default="1000000"/>
+  <xacro:arg name="use_mock"       default="false"/>
+  <xacro:arg name="use_sync_write" default="true"/>
+  <xacro:arg name="pan_motor_id"   default="1"/>
+  <xacro:arg name="tilt_motor_id"  default="2"/>
+  <xacro:arg name="pan_center_steps" default="2048"/>
+  <xacro:arg name="tilt_center_steps" default="2646"/>
+  <xacro:arg name="pantilt_operating_mode" default="0"/>
+
   <xacro:include filename="$(find lepantilt_description)/urdf/pantilt.common.xacro"/>
   <xacro:include filename="$(find lepantilt_description)/urdf/pantilt.control.xacro"/>
   <xacro:include filename="$(find lepantilt_description)/urdf/pantilt.module.xacro"/>
-  <!-- OAK-D camera and IMU integration -->
-  <xacro:include filename="$(find depthai_descriptions)/urdf/include/depthai_macro.urdf.xacro"/>
 
   <!-- Standalone pantilt module instantiation -->
   <link name="base_footprint"/>
 	<xacro:lepantilt_module parent="base_footprint">
 	  <origin xyz="0 0 0" rpy="0 0 0"/>
 	</xacro:lepantilt_module>
-
 
 </robot>

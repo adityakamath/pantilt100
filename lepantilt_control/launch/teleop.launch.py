@@ -10,18 +10,17 @@ from launch.substitutions import PathJoinSubstitution
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
 
-
 def generate_launch_description():
-    joy_teleop_config = PathJoinSubstitution(
-        [FindPackageShare("lepantilt_control"), "config", "joy_teleop_config.yaml"]
+    teleop_config = PathJoinSubstitution(
+        [FindPackageShare("lepantilt_control"), "config", "teleop_config.yaml"]
     )
 
-    joy_teleop_node = Node(
+    teleop_node = Node(
         package="joy_teleop",
         executable="joy_teleop",
         name="joy_teleop",
         output="log",
-        parameters=[joy_teleop_config],
+        parameters=[teleop_config],
     )
 
-    return LaunchDescription([joy_teleop_node])
+    return LaunchDescription([teleop_node])
