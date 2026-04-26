@@ -6,7 +6,7 @@
 [![Blog](https://img.shields.io/badge/Blog-kamathrobotics.com-darkorange?style=flat&logo=hashnode&logoSize=auto)](https://kamathrobotics.com)
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
 
->**⚠️ Disclaimer:** This package will eventually be integrated into [lekiwi_ros2](https://github.com/adityakamath/lekiwi_ros2), and is just a sandbox repo for testing a few things. It is a work in progress and may not always be stable or fully functional. The documentation is AI generated, but then manually reviewed. Use with caution, and expect breaking changes.
+>**⚠️ Disclaimer:** This package will eventually be integrated into [lekiwi_ros2](https://github.com/adityakamath/lekiwi_ros2), and for now is just a sandbox / template repo for testing a few things. It is a work in progress and may not always be stable or fully functional. The documentation is AI generated, but then manually reviewed. Use with caution, and expect breaking changes.
 
 ROS 2 software stack for a 2-DOF pan-tilt camera mount using [SO-ARM100](https://github.com/TheRobotStudio/SO-ARM100) parts, [Feetech STS3215](https://www.feetechrc.com/2020-05-13_56655.html) servo motors and an [OAK-D S2](https://docs.luxonis.com/hardware/products/OAK-D%20S2) camera. Provides position control with joystick teleop, visual-inertial odometry (VIO) bringup, and an embeddable xacro module for integration into other robots.
 
