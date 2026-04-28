@@ -3,7 +3,7 @@
 ![Project Status](https://img.shields.io/badge/Status-WIP-yellow)
 ![ROS 2](https://img.shields.io/badge/ROS%202-Kilted%20(Ubuntu%2024.04)-blue?style=flat&logo=ros&logoSize=auto)
 [![Ask DeepWiki (Experimental)](https://deepwiki.com/badge.svg)](https://deepwiki.com/adityakamath/pantilt100)
-[![Blog](https://img.shields.io/badge/Blog-kamathrobotics.com-darkorange?style=flat&logo=hashnode&logoSize=auto)](https://kamathrobotics.com)
+[![Blog](https://img.shields.io/badge/Blog-kamathrobotics.com-darkorange?style=flat&logo=hashnode&logoSize=auto)](https://kamathrobotics.com/pan-tilt-controls-using-ros-2)
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
 
 >**⚠️ Disclaimer:** This package will eventually be integrated into [lekiwi_ros2](https://github.com/adityakamath/lekiwi_ros2), and for now is just a sandbox / template repo for testing a few things. It is a work in progress and may not always be stable or fully functional. The documentation is AI generated, but then manually reviewed. Use with caution, and expect breaking changes.
